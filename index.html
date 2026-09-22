@@ -2,130 +2,914 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cİ</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0b0608">
+<title>Cİ — Sevilmek güzeldir.</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f8f6f2;
-  color: #222;
+:root{
+  --bg:#090507;
+  --panel:#151012;
+  --panel2:#1d1518;
+  --pink:#e97994;
+  --pink2:#f08da5;
+  --gold:#e7bd52;
+  --cream:#f5eee9;
+  --muted:#a99b9d;
+  --line:#322428;
+  --danger:#e65e72;
 }
 
-.app {
-  max-width: 430px;
-  min-height: 100vh;
-  margin: auto;
-  padding: 25px 20px 100px;
+body{
+  margin:0;
+  background:#24171b;
+  color:var(--cream);
+  font-family:Inter,Arial,sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 35px;
+button{
+  font:inherit;
+  color:inherit;
+  border:0;
+  cursor:pointer;
 }
 
-.logo {
-  font-size: 30px;
-  font-weight: bold;
+.app{
+  width:100%;
+  min-height:100vh;
+  max-width:430px;
+  margin:auto;
+  background:
+    radial-gradient(circle at 50% -10%,#352127 0,#11090c 38%,#090507 75%);
+  position:relative;
+  overflow:hidden;
 }
 
-.profile {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: #222;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
+.screen{
+  min-height:100vh;
+  display:none;
+  position:relative;
+  padding-bottom:30px;
 }
 
-.small {
-  color: #777;
-  font-size: 14px;
-  margin-bottom: 8px;
+.screen.active{
+  display:block;
 }
 
-h1 {
-  font-size: 30px;
-  margin-bottom: 25px;
+.hidden{
+  display:none!important;
 }
 
-.days {
-  background: #222;
-  color: white;
-  border-radius: 25px;
-  padding: 28px;
-  margin-bottom: 20px;
+/* ================= HOME ================= */
+
+.home{
+  min-height:100vh;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.13),rgba(5,2,4,.91) 76%),
+    url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=85")
+    center/cover;
 }
 
-.days-number {
-  font-size: 55px;
-  font-weight: bold;
+.home:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.35),transparent,rgba(0,0,0,.5));
+  pointer-events:none;
 }
 
-.days-text {
-  color: #ccc;
-  margin-top: 5px;
+.topbar{
+  height:74px;
+  padding:23px 22px 0;
+  position:relative;
+  z-index:3;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+.menu{
+  width:31px;
+  height:31px;
+  background:none;
+  position:relative;
 }
 
-.card {
-  background: white;
-  border-radius: 22px;
-  padding: 22px;
-  min-height: 130px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+.menu span,
+.menu span:before,
+.menu span:after{
+  content:"";
+  position:absolute;
+  width:19px;
+  height:2px;
+  background:#eee1dc;
+  left:2px;
+  border-radius:3px;
 }
 
-.card h3 {
-  margin-bottom: 10px;
+.menu span{top:14px}
+.menu span:before{top:-6px}
+.menu span:after{top:6px}
+
+.home-content{
+  position:absolute;
+  z-index:2;
+  top:48%;
+  left:0;
+  right:0;
+  text-align:center;
+  transform:translateY(-15%);
+  padding:20px;
 }
 
-.card p {
-  color: #777;
-  font-size: 14px;
+.logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:76px;
+  line-height:.8;
+  color:#ed8ca5;
+  font-weight:500;
+  letter-spacing:-4px;
+  text-shadow:0 0 30px rgba(233,121,148,.2);
 }
 
-.note {
-  margin-top: 15px;
-  background: #eee8df;
-  border-radius: 22px;
-  padding: 22px;
+.tagline{
+  margin-top:25px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:22px;
+  letter-spacing:.2px;
 }
 
-.bottom {
-  position: fixed;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 30px);
-  max-width: 400px;
-  background: #222;
-  color: white;
-  border-radius: 25px;
-  display: flex;
-  justify-content: space-around;
-  padding: 15px 5px;
+.home-heart{
+  margin:17px auto;
+  color:var(--gold);
+  font-size:29px;
+  font-family:Arial;
+  transform:scaleX(1.05);
 }
 
-.bottom div {
-  font-size: 12px;
-  text-align: center;
+.home-quote{
+  margin-top:38px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:19px;
+  font-style:italic;
+  line-height:1.35;
+  color:#d9cbca;
+}
+
+/* ================= SIDE MENU ================= */
+
+.drawer{
+  position:fixed;
+  z-index:50;
+  inset:0;
+  display:none;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(3px);
+}
+
+.drawer.open{
+  display:block;
+}
+
+.drawer-panel{
+  width:min(84%,360px);
+  height:100%;
+  background:
+    linear-gradient(90deg,rgba(15,8,11,.98),rgba(14,8,10,.94)),
+    url("https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=700&q=70")
+    center/cover;
+  padding:28px 22px;
+  overflow-y:auto;
+  box-shadow:15px 0 40px rgba(0,0,0,.45);
+}
+
+.profile-mini{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding-bottom:21px;
+  border-bottom:1px solid #2b1c20;
+  margin-bottom:7px;
+}
+
+.avatar{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  object-fit:cover;
+  border:1px solid #574045;
+}
+
+.profile-name{
+  font-size:15px;
+  font-weight:500;
+}
+
+.profile-status{
+  font-size:11px;
+  color:#a9999c;
+  margin-top:4px;
+}
+
+.nav-item{
+  height:43px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  color:#e9dedc;
+  font-size:13px;
+  padding:0 3px;
+  border-radius:9px;
+  transition:.2s;
+}
+
+.nav-item:active{
+  background:#211519;
+}
+
+.nav-icon{
+  width:24px;
+  text-align:center;
+  font-size:17px;
+}
+
+.nav-arrow{
+  margin-left:auto;
+  color:#9f767d;
+}
+
+.nav-separator{
+  height:1px;
+  background:#2b1d20;
+  margin:5px 0;
+}
+
+/* ================= COMMON ================= */
+
+.page-header{
+  height:68px;
+  padding:22px 18px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.back{
+  position:absolute;
+  left:18px;
+  top:20px;
+  background:none;
+  font-size:28px;
+  line-height:25px;
+  color:#eee1dc;
+  font-weight:200;
+}
+
+.page-title{
+  font-size:14px;
+  font-weight:600;
+}
+
+.more{
+  position:absolute;
+  right:18px;
+  top:19px;
+  background:none;
+  font-size:22px;
+}
+
+.content{
+  padding:14px 18px 35px;
+}
+
+.card{
+  background:linear-gradient(145deg,#1d1518,#130d0f);
+  border:1px solid #2d2023;
+  border-radius:16px;
+  box-shadow:0 8px 22px rgba(0,0,0,.2);
+}
+
+/* ================= COUPLE ================= */
+
+.couple{
+  text-align:center;
+}
+
+.couple-profiles{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:25px;
+  margin:15px 0 24px;
+}
+
+.person{
+  width:105px;
+}
+
+.person-avatar{
+  width:72px;
+  height:72px;
+  object-fit:cover;
+  border-radius:50%;
+  border:1px solid #805d43;
+  box-shadow:0 0 0 2px rgba(225,166,95,.1);
+}
+
+.person-name{
+  margin-top:9px;
+  font-size:13px;
+}
+
+.person-age{
+  color:#d0c4c3;
+  font-size:11px;
+  line-height:1.5;
+  margin-top:4px;
+}
+
+.love-symbol{
+  font-size:26px;
+  color:var(--gold);
+  margin-top:-22px;
+}
+
+.info-card{
+  padding:18px;
+  margin-bottom:10px;
+  text-align:left;
+}
+
+.info-icon{
+  float:left;
+  width:38px;
+  color:var(--gold);
+  font-size:22px;
+}
+
+.info-label{
+  font-size:10px;
+  color:#a99c9d;
+  margin-bottom:6px;
+}
+
+.info-value{
+  font-size:14px;
+}
+
+.couple-quote{
+  margin:32px 18px 0;
+  font-family:"Cormorant Garamond",serif;
+  font-style:italic;
+  line-height:1.35;
+  font-size:16px;
+  color:#cfc0c0;
+}
+
+/* ================= MESSAGES ================= */
+
+.messages{
+  display:flex;
+  flex-direction:column;
+  min-height:calc(100vh - 68px);
+  padding:10px 17px 16px;
+}
+
+.chat{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.message{
+  max-width:78%;
+  padding:12px 14px 8px;
+  border-radius:17px;
+  font-size:12px;
+  line-height:1.35;
+  position:relative;
+}
+
+.message.mine{
+  align-self:flex-end;
+  background:linear-gradient(135deg,#d96e87,#e9879d);
+  color:white;
+  border-bottom-right-radius:5px;
+}
+
+.message.theirs{
+  align-self:flex-start;
+  background:#211a1c;
+  border:1px solid #2d2527;
+  border-bottom-left-radius:5px;
+}
+
+.message-time{
+  display:block;
+  text-align:right;
+  font-size:8px;
+  opacity:.65;
+  margin-top:4px;
+}
+
+.chat-input{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.chat-input input{
+  flex:1;
+  height:45px;
+  border:1px solid #38272b;
+  background:#171012;
+  color:#fff;
+  border-radius:24px;
+  padding:0 16px;
+  outline:none;
+}
+
+.send{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#e57992;
+  color:white;
+  font-size:18px;
+}
+
+/* ================= MEMORIES ================= */
+
+.memory-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.memory{
+  overflow:hidden;
+  border-radius:13px;
+  background:#181012;
+  border:1px solid #302125;
+}
+
+.memory-img{
+  width:100%;
+  height:130px;
+  object-fit:cover;
+  display:block;
+}
+
+.memory-body{
+  padding:8px 9px 10px;
+}
+
+.memory-date{
+  font-size:9px;
+  color:#eee1dc;
+}
+
+.memory-location{
+  color:#e28a9d;
+  font-size:9px;
+  margin-top:3px;
+}
+
+.memory-text{
+  font-size:9px;
+  color:#d5c8c7;
+  margin-top:7px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* ================= STORY ================= */
+
+.timeline{
+  position:relative;
+  padding:10px 8px 30px 32px;
+}
+
+.timeline:before{
+  content:"";
+  position:absolute;
+  left:14px;
+  top:10px;
+  bottom:0;
+  width:1px;
+  background:linear-gradient(#e68b9d,#76575d);
+}
+
+.timeline-item{
+  position:relative;
+  margin-bottom:27px;
+}
+
+.timeline-dot{
+  position:absolute;
+  left:-22px;
+  top:1px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#e8a0a8;
+  border:2px solid #29181d;
+  box-shadow:0 0 0 1px #b97580;
+}
+
+.timeline-date{
+  font-size:10px;
+  color:#d9c9c6;
+}
+
+.timeline-title{
+  margin-top:5px;
+  font-size:12px;
+}
+
+.timeline-desc{
+  margin-top:5px;
+  font-size:10px;
+  color:#9f9192;
+}
+
+/* ================= LOVE ================= */
+
+.love-page{
+  text-align:center;
+}
+
+.big-heart{
+  width:90px;
+  height:90px;
+  margin:45px auto 30px;
+  position:relative;
+}
+
+.big-heart:before{
+  content:"♡";
+  position:absolute;
+  inset:0;
+  color:#ec718d;
+  font-size:91px;
+  line-height:75px;
+  text-shadow:
+    0 0 5px #ec718d,
+    0 0 20px rgba(236,113,141,.25);
+}
+
+.love-title{
+  font-size:14px;
+  font-weight:500;
+}
+
+.love-reason{
+  margin:24px auto;
+  max-width:270px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:19px;
+  line-height:1.45;
+}
+
+.love-author{
+  font-family:"Cormorant Garamond",serif;
+  font-size:16px;
+}
+
+.bottom-card{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:25px;
+  padding:15px;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.bottom-card-icon{
+  color:#e67c91;
+  font-size:19px;
+}
+
+.bottom-card-arrow{
+  margin-left:auto;
+  color:#aa717b;
+}
+
+/* ================= GAMES ================= */
+
+.game-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.game{
+  padding:11px 13px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:58px;
+}
+
+.game-icon{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#e67d95;
+  font-size:17px;
+}
+
+.game:nth-child(2) .game-icon,
+.game:nth-child(3) .game-icon{
+  background:#efbd55;
+}
+
+.game:nth-child(5) .game-icon{
+  background:#69a9c5;
+}
+
+.game-title{
+  font-size:11px;
+}
+
+.game-desc{
+  font-size:8px;
+  color:#948688;
+  margin-top:4px;
+}
+
+.game-arrow{
+  margin-left:auto;
+  color:#a3757c;
+}
+
+/* ================= CALENDAR ================= */
+
+.calendar-card{
+  padding:15px 10px;
+}
+
+.calendar-head{
+  display:flex;
+  justify-content:space-between;
+  padding:0 3px 15px;
+  font-size:11px;
+}
+
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+  text-align:center;
+}
+
+.week{
+  font-size:8px;
+  color:#938487;
+}
+
+.day{
+  height:28px;
+  display:grid;
+  place-items:center;
+  font-size:9px;
+  border-radius:50%;
+}
+
+.day.today{
+  background:#df7188;
+  color:white;
+}
+
+/* ================= LISTS ================= */
+
+.option-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.option{
+  min-height:53px;
+  display:flex;
+  align-items:center;
+  padding:0 13px;
+  border:1px solid #2d2023;
+  border-radius:11px;
+  background:#171012;
+}
+
+.option-icon{
+  width:28px;
+  color:#e9879c;
+}
+
+.option-text{
+  font-size:10px;
+}
+
+.option-sub{
+  font-size:8px;
+  color:#827477;
+  margin-top:4px;
+}
+
+.option-arrow{
+  margin-left:auto;
+  color:#9b727a;
+}
+
+.check{
+  width:18px;
+  height:18px;
+  border:1px solid #9b6672;
+  border-radius:50%;
+  margin-right:11px;
+}
+
+.check.done{
+  background:#df7188;
+  border-color:#df7188;
+  position:relative;
+}
+
+.check.done:after{
+  content:"✓";
+  position:absolute;
+  font-size:11px;
+  left:3px;
+  top:0px;
+}
+
+/* ================= LOCATION ================= */
+
+.map{
+  height:280px;
+  border-radius:14px;
+  overflow:hidden;
+  position:relative;
+  background:
+    linear-gradient(rgba(22,32,30,.2),rgba(5,12,12,.45)),
+    url("https://images.unsplash.com/photo-1524666041070-9c876415b7d2?auto=format&fit=crop&w=900&q=80")
+    center/cover;
+}
+
+.map:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(45deg,transparent 48%,rgba(255,255,255,.06) 49%,transparent 51%),
+    linear-gradient(-35deg,transparent 48%,rgba(255,255,255,.06) 49%,transparent 51%);
+  background-size:70px 70px;
+}
+
+.pin{
+  position:absolute;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:3px solid #ed8199;
+  background:#1b1015;
+  display:grid;
+  place-items:center;
+  font-size:11px;
+}
+
+.pin.a{
+  left:29%;
+  top:38%;
+}
+
+.pin.b{
+  right:29%;
+  top:57%;
+  border-color:#e6bd55;
+}
+
+.pin-label{
+  position:absolute;
+  margin-top:58px;
+  font-size:9px;
+  color:#eee;
+  white-space:nowrap;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.location-status{
+  padding:12px 3px;
+  font-size:10px;
+  color:#8f8385;
+}
+
+.status-dot{
+  width:7px;
+  height:7px;
+  display:inline-block;
+  border-radius:50%;
+  background:#55d87a;
+  margin-right:6px;
+}
+
+/* ================= MISSED ================= */
+
+.missed-heart{
+  text-align:center;
+  color:#e77c91;
+  font-size:30px;
+  margin:30px 0 10px;
+}
+
+.missed-text{
+  text-align:center;
+  font-family:"Cormorant Garamond",serif;
+  font-size:18px;
+  line-height:1.45;
+}
+
+.missed-button{
+  margin:22px auto;
+  display:block;
+  width:100%;
+  height:43px;
+  border-radius:24px;
+  background:#e6758d;
+  font-size:11px;
+}
+
+/* ================= SETTINGS ================= */
+
+.settings-profile{
+  text-align:center;
+  padding:10px 0 20px;
+}
+
+.settings-profile .avatar{
+  width:62px;
+  height:62px;
+}
+
+.settings-name{
+  font-size:12px;
+  margin-top:8px;
+}
+
+.settings-sub{
+  font-size:9px;
+  color:#827577;
+  margin-top:4px;
+}
+
+.logout{
+  color:#e56f80;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  z-index:100;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,20px);
+  background:#27191d;
+  border:1px solid #54323a;
+  color:#f2e9e6;
+  padding:12px 17px;
+  border-radius:12px;
+  font-size:11px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* ================= DESKTOP ================= */
+
+@media(min-width:700px){
+  .app{
+    min-height:100vh;
+    box-shadow:0 0 70px rgba(0,0,0,.45);
+  }
 }
 </style>
 </head>
@@ -134,46 +918,211 @@ h1 {
 
 <div class="app">
 
-  <div class="header">
+<!-- HOME -->
+<section id="home" class="screen active home">
+  <div class="topbar">
+    <button class="menu" onclick="openDrawer()">
+      <span></span>
+    </button>
+  </div>
+
+  <div class="home-content">
     <div class="logo">Cİ</div>
-    <div class="profile">A</div>
+    <div class="tagline">Sevilmek güzeldir.</div>
+    <div class="home-heart">♡</div>
+    <div class="home-quote">
+      Seninle her şey<br>
+      daha güzel...
+    </div>
   </div>
+</section>
 
-  <div class="small">Birlikte geçen zaman</div>
-  <h1>Bizim hikâyemiz.</h1>
+<!-- DRAWER -->
+<div id="drawer" class="drawer" onclick="closeDrawer(event)">
+  <div class="drawer-panel" onclick="event.stopPropagation()">
 
-  <div class="days">
-    <div class="days-number">0</div>
-    <div class="days-text">gündür birlikte</div>
-  </div>
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>♡ Anılar</h3>
-      <p>Birlikte yaşadığınız güzel anıları saklayın.</p>
+    <div class="profile-mini">
+      <img class="avatar"
+        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80">
+      <div>
+        <div class="profile-name">Alişan</div>
+        <div class="profile-status">Cİ’de birlikte ❤️</div>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>✎ Not bırak</h3>
-      <p>Birbirinize küçük notlar bırakın.</p>
+    <div class="nav-item" onclick="showScreen('couple')">
+      <span class="nav-icon">❤️</span> Biz
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-item" onclick="showScreen('messages')">
+      <span class="nav-icon">💌</span> Mesajlarımız
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-item" onclick="showScreen('memories')">
+      <span class="nav-icon">📷</span> Anılarımız
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-item" onclick="showScreen('story')">
+      <span class="nav-icon">📖</span> Hikâyemiz
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-item" onclick="showScreen('love')">
+      <span class="nav-icon">🌹</span> Sevgi
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-item" onclick="showScreen('games')">
+      <span class="nav-icon">🎮</span> Oyunlar
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-item" onclick="showScreen('calendar')">
+      <span class="nav-icon">🗓️</span> Takvimimiz
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-item" onclick="showScreen('surprises')">
+      <span class="nav-icon">🎁</span> Sürprizler
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-item" onclick="showScreen('todo')">
+      <span class="nav-icon">📝</span> Birlikte Yapacaklarımız
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-item" onclick="showScreen('location')">
+      <span class="nav-icon">📍</span> Canlı Konum
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-item" onclick="showScreen('missed')">
+      <span class="nav-icon">❤️</span> Özledim
+      <span class="nav-arrow">›</span>
+    </div>
+
+    <div class="nav-separator"></div>
+
+    <div class="nav-item" onclick="showScreen('settings')">
+      <span class="nav-icon">⚙️</span> Ayarlar
+      <span class="nav-arrow">›</span>
     </div>
 
   </div>
+</div>
 
-  <div class="note">
-    <div class="small">Bugünün notu</div>
-    <p>“Seninle geçen her gün, hikâyemizin yeni bir sayfası.”</p>
+<!-- COUPLE -->
+<section id="couple" class="screen">
+  <header class="page-header">
+    <button class="back" onclick="goHome()">‹</button>
+    <div class="page-title">Biz</div>
+  </header>
+
+  <div class="content couple">
+    <div class="couple-profiles">
+
+      <div class="person">
+        <img class="person-avatar"
+          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=85">
+        <div class="person-name">Alişan</div>
+        <div class="person-age">23 yaşında<br>21 Ekim 2003</div>
+      </div>
+
+      <div class="love-symbol">♡</div>
+
+      <div class="person">
+        <img class="person-avatar"
+          src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=85">
+        <div class="person-name">Aslı</div>
+        <div class="person-age">22 yaşında<br>12 Mart 2004</div>
+      </div>
+
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon">▣</div>
+      <div class="info-label">İlişki Başlangıç Tarihi</div>
+      <div class="info-value">21 Temmuz 2026</div>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon">♡</div>
+      <div class="info-label">İlişki Süresi</div>
+      <div class="info-value" id="relationshipTime">1 ay 12 gün 💗</div>
+    </div>
+
+    <div class="couple-quote">
+      “Doğru kişi, hayatını<br>
+      sadece paylaşmakla kalmaz;<br>
+      sana kendini kazandırır.”
+    </div>
   </div>
+</section>
 
-</div>
+<!-- MESSAGES -->
+<section id="messages" class="screen">
+  <header class="page-header">
+    <button class="back" onclick="goHome()">‹</button>
+    <div class="page-title">Mesajlarımız</div>
+    <button class="more">⋮</button>
+  </header>
 
-<div class="bottom">
-  <div>⌂<br>Ana Sayfa</div>
-  <div>♡<br>Anılar</div>
-  <div>✎<br>Notlar</div>
-  <div>☻<br>Biz</div>
-</div>
+  <div class="messages">
+    <div class="chat" id="chat">
 
-</body>
-</html>
+      <div class="message mine">
+        Günaydın aşkım 💕<br>
+        Bugün seni çok özledim.
+        <span class="message-time">09:12 ✓</span>
+      </div>
+
+      <div class="message theirs">
+        Günaydın canım ❤️<br>
+        Ben de seni çok özledim.
+        <span class="message-time">09:18</span>
+      </div>
+
+      <div class="message mine">
+        Akşam görüşmek için sabırsızlanıyorum. 🥰
+        <span class="message-time">09:20 ✓</span>
+      </div>
+
+    </div>
+
+    <div class="chat-input">
+      <input id="messageInput" placeholder="Mesaj yaz..." 
+             onkeydown="if(event.key==='Enter')sendMessage()">
+      <button class="send" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+</section>
+
+<!-- MEMORIES -->
+<section id="memories" class="screen">
+  <header class="page-header">
+    <button class="back" onclick="goHome()">‹</button>
+    <div class="page-title">Anılarımız</div>
+    <button class="more" onclick="addMemory()">⊕</button>
+  </header>
+
+  <div class="content">
+    <div class="memory-grid">
+
+      <div class="memory">
+        <img class="memory-img"
+          src="https://images.unsplash.com/photo-1470214304380-aadaedcfff1b?auto=format&fit=crop&w=500&q=80">
+        <div class="memory-body">
+          <div class="memory-date">21 Temmuz 2026</div>
+          <div class="memory-location">📍 Konya</div>
+          <div class="memory-text">Her şey seninle başladı...</div>
+        </div>
+      </div>
+
+      <div class="memory">
+        <img class="memory-img"
+          src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=500&q=80">
+        <div cla
